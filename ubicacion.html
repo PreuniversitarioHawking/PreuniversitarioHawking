@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obtener Ubicación</title>
+</head>
+<body>
+    <h1>Obtener Ubicación</h1>
+    <script>
+        // Comprobar si el navegador soporta la geolocalización
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(enviarUbicacion, mostrarError);
+        } else {
+            alert("Geolocalización no es soportada por este navegador.");
+        }
+
+        function enviarUbicacion(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            // Enviar la ubicación a tu servidor usando la URL proporcionada por ngrok
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://8830-131-196-112-55.ngrok-free.app/guardar-ubicacion", true); // Reemplaza con tu URL de ngrok
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("lat=" + lat + "&lon=" + lon);
+
+            alert("Ubicación enviada: " + lat + ", " + lon);
+        }
+
+        function mostrarError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Usuario negó el permiso de Geolocalización.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("La información de ubicación no está disponible.");
+                    break;
+                case error.TIMEOUT:
+                    alert("La solicitud de ubicación ha expirado.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("Un error desconocido ocurrió.");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
